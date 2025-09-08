@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2 class="website-name">
+                    <span class="dav-text">DAV</span><span class="source-text">SOURCE</span>
+                </h2>
+            </div>
+            <div class="nav-menu">
+                <button class="nav-btn" onclick="showHome()">Home</button>
+                <div class="dropdown">
+                    <button class="nav-btn dropdown-btn" onclick="toggleDropdown()">Subjects</button>
+                    <div class="dropdown-content" id="dropdownContent">
+                        <a href="#" onclick="showSubject('toc')">TOC</a>
+                        <a href="#" onclick="showSubject('ai')">AI</a>
+                        <a href="#" onclick="showSubject('sepm')">SEPM</a>
+                        <a href="#" onclick="showSubject('cn')">CN</a>
+                        <a href="#" onclick="showSubject('rm')">RM</a>
+                    </div>
+                </div>
+                <button class="nav-btn" id="loginBtn" onclick="showLoginModal()">Login</button>
+                <button class="nav-btn" id="logoutBtn" onclick="logout()" style="display: none;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Home Page -->
+        <section id="homePage" class="page active">
+            <div class="home-container">
+                <div class="hero-section">
+                    <h1>Welcome to DAVSOURCE</h1>
+                    <p class="hero-quote">"Leap of faith begins with a step of learning."</p>
+                    <p class="hero-subtitle">Access all your 5th semester notes and resources</p>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon">🎯</div>
+                        <h3>Focused Learning</h3>
+                        <p>Streamlined access to essential 5th semester materials without distractions. Study smarter, not harder.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">⚡</div>
+                        <h3>Quick Access</h3>
+                        <p>Instant access to all your course materials with just one click. No more searching through multiple platforms.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">🔒</div>
+                        <h3>Secure Platform</h3>
+                        <p>Your academic resources are safely stored and accessible only to authorized students and faculty members.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">📈</div>
+                        <h3>Academic Success</h3>
+                        <p>Boost your grades with organized, up-to-date study materials designed for 5th semester excellence.</p>
+                    </div>
+                </div>
+
+                <div class="subjects-preview">
+                    <h2>Available Subjects</h2>
+                    <div class="subjects-grid">
+                        <div class="subject-card" onclick="showSubject('toc')">
+                            <div class="subject-icon">🧮</div>
+                            <h3>Theory of Computation</h3>
+                            <p>Automata, formal languages, and computational complexity</p>
+                        </div>
+                        
+                        <div class="subject-card" onclick="showSubject('ai')">
+                            <div class="subject-icon">🤖</div>
+                            <h3>Artificial Intelligence</h3>
+                            <p>Machine learning, neural networks, and intelligent systems</p>
+                        </div>
+                        
+                        <div class="subject-card" onclick="showSubject('sepm')">
+                            <div class="subject-icon">⚙️</div>
+                            <h3>Software Engineering</h3>
+                            <p>Project management, software development lifecycle</p>
+                        </div>
+                        
+                        <div class="subject-card" onclick="showSubject('cn')">
+                            <div class="subject-icon">🌐</div>
+                            <h3>Computer Networks</h3>
+                            <p>Network protocols, architecture, and communication</p>
+                        </div>
+                        
+                        <div class="subject-card" onclick="showSubject('rm')">
+                            <div class="subject-icon">🔬</div>
+                            <h3>Research Methodology</h3>
+                            <p>Research design, data analysis, and academic writing</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h2>Platform Statistics</h2>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Subjects</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Resources</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="visitorCount">0</div>
+                            <div class="stat-label">Visitors</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Free Access</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Available</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subject Pages -->
+        <section id="tocPage" class="page">
+            <div class="subject-container">
+                <div class="subject-header">
+                    <button class="back-btn" onclick="showPreviousSubject('toc')">← Previous Subject</button>
+                    <h1>Theory of Computation (TOC)</h1>
+                    <button class="next-btn" onclick="showNextSubject('toc')">Next Subject →</button>
+                </div>
+                <div class="links-section">
+                    <div class="links-header">
+                        <h2>Course Links</h2>
+                        <button class="add-link-btn" id="addTocBtn" onclick="showAddLinkModal('toc')" style="display: none;">+ Add Link</button>
+                    </div>
+                    <div class="links-list" id="tocLinks">
+                        <!-- Links will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="aiPage" class="page">
+            <div class="subject-container">
+                <div class="subject-header">
+                    <button class="back-btn" onclick="showPreviousSubject('ai')">← Previous Subject</button>
+                    <h1>Artificial Intelligence (AI)</h1>
+                    <button class="next-btn" onclick="showNextSubject('ai')">Next Subject →</button>
+                </div>
+                <div class="links-section">
+                    <div class="links-header">
+                        <h2>Course Links</h2>
+                        <button class="add-link-btn" id="addAiBtn" onclick="showAddLinkModal('ai')" style="display: none;">+ Add Link</button>
+                    </div>
+                    <div class="links-list" id="aiLinks">
+                        <!-- Links will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sepmPage" class="page">
+            <div class="subject-container">
+                <div class="subject-header">
+                    <button class="back-btn" onclick="showPreviousSubject('sepm')">← Previous Subject</button>
+                    <h1>Software Engineering Project Management (SEPM)</h1>
+                    <button class="next-btn" onclick="showNextSubject('sepm')">Next Subject →</button>
+                </div>
+                <div class="links-section">
+                    <div class="links-header">
+                        <h2>Course Links</h2>
+                        <button class="add-link-btn" id="addSepmBtn" onclick="showAddLinkModal('sepm')" style="display: none;">+ Add Link</button>
+                    </div>
+                    <div class="links-list" id="sepmLinks">
+                        <!-- Links will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cnPage" class="page">
+            <div class="subject-container">
+                <div class="subject-header">
+                    <button class="back-btn" onclick="showPreviousSubject('cn')">← Previous Subject</button>
+                    <h1>Computer Networks (CN)</h1>
+                    <button class="next-btn" onclick="showNextSubject('cn')">Next Subject →</button>
+                </div>
+                <div class="links-section">
+                    <div class="links-header">
+                        <h2>Course Links</h2>
+                        <button class="add-link-btn" id="addCnBtn" onclick="showAddLinkModal('cn')" style="display: none;">+ Add Link</button>
+                    </div>
+                    <div class="links-list" id="cnLinks">
+                        <!-- Links will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="rmPage" class="page">
+            <div class="subject-container">
+                <div class="subject-header">
+                    <button class="back-btn" onclick="showPreviousSubject('rm')">← Previous Subject</button>
+                    <h1>Research Methodology (RM)</h1>
+                    <button class="next-btn" onclick="showNextSubject('rm')">Back to Start →</button>
+                </div>
+                <div class="links-section">
+                    <div class="links-header">
+                        <h2>Course Links</h2>
+                        <button class="add-link-btn" id="addRmBtn" onclick="showAddLinkModal('rm')" style="display: none;">+ Add Link</button>
+                    </div>
+                    <div class="links-list" id="rmLinks">
+                        <!-- Links will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login</h2>
+                <span class="close" onclick="closeLoginModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="userName">Name:</label>
+                        <input type="text" id="userName" name="userName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userNumber">Number:</label>
+                        <input type="tel" id="userNumber" name="userNumber" required inputmode="numeric" pattern="[0-9]{1,10}" maxlength="10" title="Enter 1 to 10 digits only">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeLoginModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Link Modal -->
+    <div id="addLinkModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Link</h2>
+                <span class="close" onclick="closeAddLinkModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="addLinkForm">
+                    <div class="form-group">
+                        <label for="linkTitle">Link Title:</label>
+                        <input type="text" id="linkTitle" name="linkTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="linkUrl">URL:</label>
+                        <input type="url" id="linkUrl" name="linkUrl" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Add Link</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeAddLinkModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
